@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ocho Reinas</title>
+    <style>
+        table{
+            border:1px solid;
+            border-collapse: collapse;
+            margin-left: auto;
+            margin-right: auto;
+            
+        }
+        tr{
+            border:1px solid;
+            border-collapse: collapse;
+            
+        }
+        td{
+            border:1px solid;
+            border-collapse: collapse;
+            width:50px;
+            height: 50px;
+        }
+        tr:nth-child(even) td:nth-child(even), tr:nth-child(odd) td:nth-child(odd){
+            background-color: black;
+            
+        }
+        tr:nth-child(odd) td:nth-child(even), tr:nth-child(odd) td:nth-child(even){
+            background-color: white;
+            
+        }
+        div {
+            font-size: xx-large;
+            text-align: center;
+        }
+        h1 {
+            text-align: center;
+        }
+        button{
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            text-decoration:none;
+            font-weight: 500;
+            font-size: 20px;
+            color:#333333;
+            padding-top:15px;
+            padding-bottom:15px;
+            padding-left:40px;
+            padding-right:40px;
+            background-color:#FFD27D;
+            border-color: #d8d8d8;
+            border-width: 3px;
+            border-style: solid;
+            border-radius:35px;
+        }
+    </style>
+    <script>
+        var contador=0;
+        function celdaclick(ana){
+            //Este if valida si la celda tiene imgan de fondo o no
+            if((window.getComputedStyle(ana).backgroundImage)=="none") {
+                if(contador != 8){
+                ana.style="background-image:url(./vivi.png); background-repeat:no-repeat; background-size: cover;";
+                contador++;
+                }
+            }
+            else {
+                contador--;
+                ana.style="background-image:none; background-repeat:no-repeat; background-size: cover;";
+            }
+            document.getElementById("div_contador").innerHTML="Reinas colocadas: "+contador;
+        }
+        //Esta funcion tiene como objetivo reiniciar el tablero con las reinas puestas.
+        function reiniciar(cont){
+            var celdas=document.getElementById("tabla_ajedrez").getElementsByTagName("td");
+            for (let i = 0; i < celdas.length; i++) {
+                celdas[i].style="backgroundImage:none";
+            }
+            contador = cont;
+            document.getElementById("div_contador").innerHTML="Reinas colocadas: " +contador;
+            
+        }
+        //Esta funcion tiene como objetivo una solucion al problema. 
+        function solucion1() {
+            reiniciar(8)
+            var celdas=document.getElementById("tabla_ajedrez");
+            celdas.rows[0].cells[4].style="background-image:url(./vivi.png); background-repeat:no-repeat; background-size: cover;";
+            celdas.rows[1].cells[1].style="background-image:url(./vivi.png); background-repeat:no-repeat; background-size: cover;";
+            celdas.rows[2].cells[3].style="background-image:url(./vivi.png); background-repeat:no-repeat; background-size: cover;";
+            celdas.rows[3].cells[6].style="background-image:url(./vivi.png); background-repeat:no-repeat; background-size: cover;";
+            celdas.rows[4].cells[2].style="background-image:url(./vivi.png); background-repeat:no-repeat; background-size: cover;";
+            celdas.rows[5].cells[7].style="background-image:url(./vivi.png); background-repeat:no-repeat; background-size: cover;";
+            celdas.rows[6].cells[5].style="background-image:url(./vivi.png); background-repeat:no-repeat; background-size: cover;";
+            celdas.rows[7].cells[0].style="background-image:url(./vivi.png); background-repeat:no-repeat; background-size: cover;";
+
+        }
+         //Esta funcion tiene como objetivo una segunda solucion al problema. 
+        function solucion2() {
+            reiniciar(8)
+            var celdas=document.getElementById("tabla_ajedrez");
+            celdas.rows[0].cells[4].style="background-image:url(./vivi.png); background-repeat:no-repeat; background-size: cover;";
+            celdas.rows[1].cells[2].style="background-image:url(./vivi.png); background-repeat:no-repeat; background-size: cover;";
+            celdas.rows[2].cells[7].style="background-image:url(./vivi.png); background-repeat:no-repeat; background-size: cover;";
+            celdas.rows[3].cells[3].style="background-image:url(./vivi.png); background-repeat:no-repeat; background-size: cover;";
+            celdas.rows[4].cells[6].style="background-image:url(./vivi.png); background-repeat:no-repeat; background-size: cover;";
+            celdas.rows[5].cells[0].style="background-image:url(./vivi.png); background-repeat:no-repeat; background-size: cover;";
+            celdas.rows[6].cells[5].style="background-image:url(./vivi.png); background-repeat:no-repeat; background-size: cover;";
+            celdas.rows[7].cells[1].style="background-image:url(./vivi.png); background-repeat:no-repeat; background-size: cover;";
+        }
+    </script>
+
+<!--[if gte mso 9]><xml>
+<mso:CustomDocumentProperties>
+<mso:display_urn_x003a_schemas-microsoft-com_x003a_office_x003a_office_x0023_SharedWithUsers msdt:dt="string">4133 SIMULACI�N DE SISTEMAS PARA INGENIER�A DE SOFTWARE (ISI) Members</mso:display_urn_x003a_schemas-microsoft-com_x003a_office_x003a_office_x0023_SharedWithUsers>
+<mso:SharedWithUsers msdt:dt="string">7;#4133 SIMULACI�N DE SISTEMAS PARA INGENIER�A DE SOFTWARE (ISI) Members</mso:SharedWithUsers>
+</mso:CustomDocumentProperties>
+</xml><![endif]-->
+</head>
+<body>
+    <h1>8 Reinas</h1>
+    <table id="tabla_ajedrez">
+        <tr>
+            <td onclick="celdaclick(this)"> </td>
+            <td onclick="celdaclick(this)"></td>
+            <td onclick="celdaclick(this)"></td>
+            <td onclick="celdaclick(this)"></td>
+            <td onclick="celdaclick(this)"></td>
+            <td onclick="celdaclick(this)"></td>
+            <td onclick="celdaclick(this)"></td>
+            <td onclick="celdaclick(this)"></td>
+        </tr>
+
+        <tr>
+            
+            <td ></td>
+            <td onclick="celdaclick(this)"></td>
+            <td onclick="celdaclick(this)"></td>
+            <td onclick="celdaclick(this)"></td>
+            <td onclick="celdaclick(this)"></td>
+            <td onclick="celdaclick(this)"></td>
+            <td onclick="celdaclick(this)"></td>
+            <td onclick="celdaclick(this)"></td>
+        </tr>
+        <tr>
+            <td onclick="celdaclick(this)"></td>
+            <td onclick="celdaclick(this)"></td>
+            <td onclick="celdaclick(this)"></td>
+            <td onclick="celdaclick(this)"></td>
+            <td onclick="celdaclick(this)"></td>
+            <td onclick="celdaclick(this)"></td>
+            <td onclick="celdaclick(this)"></td>
+            <td onclick="celdaclick(this)"></td>
+        </tr>
+        <tr>
+            <td onclick="celdaclick(this)"></td>
+            <td onclick="celdaclick(this)"></td>
+            <td onclick="celdaclick(this)"></td>
+            <td onclick="celdaclick(this)"></td>
+            <td onclick="celdaclick(this)"></td>
+            <td onclick="celdaclick(this)"></td>
+            <td onclick="celdaclick(this)"></td>
+            <td onclick="celdaclick(this)"></td>
+        </tr>
+        <tr>
+            <td onclick="celdaclick(this)"></td>
+            <td onclick="celdaclick(this)"></td>
+            <td onclick="celdaclick(this)"></td>
+            <td onclick="celdaclick(this)"></td>
+            <td onclick="celdaclick(this)"></td>
+            <td onclick="celdaclick(this)"></td>
+            <td onclick="celdaclick(this)"></td>
+            <td onclick="celdaclick(this)"></td>
+        </tr>
+        <tr>
+            <td onclick="celdaclick(this)"></td>
+            <td onclick="celdaclick(this)"></td>
+            <td onclick="celdaclick(this)"></td>
+            <td onclick="celdaclick(this)"></td>
+            <td onclick="celdaclick(this)"></td>
+            <td onclick="celdaclick(this)"></td>
+            <td onclick="celdaclick(this)"></td>
+            <td onclick="celdaclick(this)"></td>
+        </tr>
+        <tr>
+            <td onclick="celdaclick(this)"></td>
+            <td onclick="celdaclick(this)"></td>
+            <td onclick="celdaclick(this)"></td>
+            <td onclick="celdaclick(this)"></td>
+            <td onclick="celdaclick(this)"></td>
+            <td onclick="celdaclick(this)"></td>
+            <td onclick="celdaclick(this)"></td>
+            <td onclick="celdaclick(this)"></td>
+        </tr>
+        <tr>
+            <td onclick="celdaclick(this)"></td>
+            <td onclick="celdaclick(this)"></td>
+            <td onclick="celdaclick(this)"></td>
+            <td onclick="celdaclick(this)"></td>
+            <td onclick="celdaclick(this)"></td>
+            <td onclick="celdaclick(this)"></td>
+            <td onclick="celdaclick(this)"></td>
+            <td onclick="celdaclick(this)"></td>
+        </tr>
+    </table>
+    <div id="div_contador">
+        Reinas colocadas: 0
+    </div>
+    &nbsp;  
+    <button onclick="reiniciar(0)">
+        Reiniciar
+    </button>
+    &nbsp;
+    <button onclick="solucion1()">
+        Solucion 1
+    </button>
+    &nbsp;
+    <button onclick="solucion2()">
+        Solucion 2
+    </button>
+    &nbsp;
+    <p>
+        Hecho por Estefania Grave Angulo :D
+    </p>
+</body>
+</html>
